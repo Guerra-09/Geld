@@ -20,6 +20,11 @@ export function useThemeColor(
   props: { light?: string; dark?: string },
   colorName: keyof typeof Colors.light & keyof typeof Colors.dark
 ) {
+
+  if (colorName === 'background') {
+    return '#121717'; // Color fijo
+  }
+
   const theme = useColorScheme() ?? 'light';
   const colorFromProps = props[theme];
 
@@ -32,9 +37,16 @@ export function useThemeColor(
 
 export function Text(props: TextProps) {
   const { style, lightColor, darkColor, ...otherProps } = props;
-  const color = useThemeColor({ light: lightColor, dark: darkColor }, 'text');
+  const defaultColor = 'white';
 
-  return <DefaultText style={[{ color }, style]} {...otherProps} />;
+  return (
+    <DefaultText 
+      style={[{ 
+        color: defaultColor,
+      }, style]}
+      {...otherProps} 
+    />
+  );
 }
 
 export function View(props: ViewProps) {
