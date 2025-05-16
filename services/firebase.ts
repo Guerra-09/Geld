@@ -1,13 +1,17 @@
-import { subscriptionMock } from '@/mocks/subscriptionts.mock';
-import { env } from '../constants/Environment';
+import { initializeApp } from 'firebase/app';
+import { getAuth } from 'firebase/auth';
+import { getFirestore } from 'firebase/firestore';
 
-export const fetchSubscriptions = async () => {
-  if (env.useMocks) {
-    return new Promise(resolve => 
-      setTimeout(() => resolve(subscriptionMock), env.mockDelay)
-    );
-  }
-
-  const response = await fetch(`${env.apiBaseUrl}/subscriptions`);
-  return response.json();
+const firebaseConfig = {
+  apiKey: "firebase.config.ts",
+  authDomain: "firebase.config.ts",
+  projectId: "firebase.config.ts",
+  storageBucket: "firebase.config.ts",
+  messagingSenderId: "firebase.config.ts",
+  appId: "firebase.config.ts"
 };
+
+const app = initializeApp(firebaseConfig);
+
+export const auth = getAuth(app);
+export const db = getFirestore(app);
