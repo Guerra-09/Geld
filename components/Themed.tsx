@@ -1,10 +1,4 @@
-/**
- * Learn more about Light and Dark modes:
- * https://docs.expo.io/guides/color-schemes/
- */
-
 import { Text as DefaultText, View as DefaultView } from 'react-native';
-
 import Colors from '@/constants/Colors';
 import { useColorScheme } from './useColorScheme';
 
@@ -25,7 +19,9 @@ export function useThemeColor(
     return '#121717'; // Color fijo
   }
 
-  const theme = useColorScheme() ?? 'light';
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const colorScheme = useColorScheme();
+  const theme = colorScheme ?? 'light';
   const colorFromProps = props[theme];
 
   if (colorFromProps) {

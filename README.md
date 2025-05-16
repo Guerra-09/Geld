@@ -2,8 +2,6 @@
 Never lose track of your recurring payments again! Geld helps you monitor subscriptions, sends renewal reminders, and visualizes your spending.
 
 # Table of Content: 📑
-- [Geld - A Subscription notificator (or something like that)](#geld---a-subscription-notificator-or-something-like-that)
-- [Table of Content: 📑](#table-of-content-)
 - [About the App: 📚](#about-the-app-)
 - [Key Features ✨](#key-features-)
 - [Screenshots: 📷](#screenshots-)

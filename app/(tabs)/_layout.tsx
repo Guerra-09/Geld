@@ -14,7 +14,7 @@ export default function TabLayout() {
   const tabBarBackgroundColor = '#1C2426';
   const tabBarActiveTintColor = 'white';
   const tabBarInactiveTintColor = 'rgba(255, 255, 255, 0.5)';
-  
+
   return (
     <Tabs
       screenOptions={{
@@ -54,6 +54,12 @@ export default function TabLayout() {
           title: 'Profile',
           tabBarIcon: ({ color }) => <TabBarIcon name="user" color={color} />,
         }}
+      />
+
+      {/* Hide index */}
+      <Tabs.Screen 
+        name="index" 
+        options={{ href: null }}
       />
     </Tabs>
   );
