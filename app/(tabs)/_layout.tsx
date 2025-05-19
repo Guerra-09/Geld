@@ -17,6 +17,7 @@ export default function TabLayout() {
 
   return (
     <Tabs
+      initialRouteName="subscriptions" 
       screenOptions={{
         tabBarStyle: {
           backgroundColor: tabBarBackgroundColor,

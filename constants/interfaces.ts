@@ -1,14 +1,23 @@
 import { Cycles } from "./enums";
 
 export interface Subscription {
-  uuid: string,
+  uuid?: string,
   name: string,
   price: string,
   icon: string,
-  iconColor: string,
+  // iconColor: string,
   backgroundColor: string,
   textColor: string,
-  startDate: Date,
-  endDate?: Date,
-  cycle: Cycles
+  startDate: string, // Date?
+  endDate?: string, // Date?
+  cycle: Cycles,
+  notes: string,
+  reminderEnabled: boolean,
+  reminderTime: string, // enum de reminder dates
+  disabled: boolean 
 };
+
+export interface DropdownItem {
+  label: string;
+  value: string;
+}

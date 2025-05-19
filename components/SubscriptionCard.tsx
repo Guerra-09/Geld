@@ -19,7 +19,8 @@ export default function SubscriptionCard({ subscription }: Props) {
         style={styles.icon} 
         resizeMode="contain"
       />
-      <View style={styles.info}>
+
+      <View style={[styles.info]}>
         <Text style={[styles.name,
           { color: subscription.textColor || '#FFFFFF' }]}
           numberOfLines={1}
@@ -27,9 +28,14 @@ export default function SubscriptionCard({ subscription }: Props) {
         >
           {subscription.name}
         </Text>
-        <Text style={styles.price}>${subscription.price}</Text>
+        <Text style={[styles.price, { color: subscription.textColor || '#FFFFFF' }]}>
+          ${subscription.price}
+        </Text>
       </View>
-      <Text style={styles.cycle}> {subscription.cycle === Cycles.monthly ? 'Mensual' : 'Anual'}</Text>
+
+      <Text style={[styles.cycle, { color: subscription.textColor || '#FFFFFF' }]}>
+        {subscription.cycle === Cycles.monthly ? 'Mensual' : 'Anual'}
+      </Text>
 
     </View>
   );
@@ -54,27 +60,24 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     minWidth: 250,
     maxWidth: 305,
+    minHeight: 50
   },
   icon: {
     width: 40,
     height: 40,
-    // backgroundColor: 'red'
   },
   name: {
     fontSize: 16,
     fontWeight: 'bold',
-    // backgroundColor: 'blue'
   },
   price: {
     fontSize: 14,
     color: '#666',
     marginTop: 4,
-    // backgroundColor: 'green'
   },
   cycle: {
     fontSize: 12,
     color: '#888',
     marginTop: 2,
-    // backgroundColor: 'brown'
   },
 });
