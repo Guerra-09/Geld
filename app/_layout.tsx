@@ -5,18 +5,20 @@ import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import 'react-native-reanimated';
 import { StatusBar } from 'expo-status-bar';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+import { store, persistor } from '../src/store';
+import { AuthProvider } from '../src/context/AuthContext';
+import { ErrorBoundary } from '../src/components/ErrorBoundary';
 
 export {
-  // Catch any errors thrown by the Layout component.
   ErrorBoundary,
 } from 'expo-router';
 
 export const unstable_settings = {
-  // Ensure that reloading on `/modal` keeps a back button present.
   initialRouteName: '(tabs)',
 };
 
-// Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
@@ -25,7 +27,6 @@ export default function RootLayout() {
     ...FontAwesome.font,
   });
 
-  // Expo Router uses Error Boundaries to catch errors in the navigation tree.
   useEffect(() => {
     if (error) throw error;
   }, [error]);
@@ -45,22 +46,27 @@ export default function RootLayout() {
 
 function RootLayoutNav() {
   return (
-    <>
-      <StatusBar 
-        style="light"
-        backgroundColor="transparent"
-        translucent={true}
-      />
-
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="(modals)/subscription-modal" 
-          options={{
-            presentation: 'modal',
-            headerShown: false,
-          }}
-        />
-      </Stack>
-    </>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <ErrorBoundary>
+          <AuthProvider>
+            <StatusBar 
+              style="light"
+              backgroundColor="transparent"
+              translucent={true}
+            />
+            <Stack>
+              <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+              <Stack.Screen name="(modals)/subscription-modal" 
+                options={{
+                  presentation: 'modal',
+                  headerShown: false,
+                }}
+              />
+            </Stack>
+          </AuthProvider>
+        </ErrorBoundary>
+      </PersistGate>
+    </Provider>
   );
 }
